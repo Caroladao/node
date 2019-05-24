@@ -10,20 +10,22 @@
     <h1>Register Clients</h1>
 
     <form action="/clients" method="post">
-
-        <input type="hidden" id="id" name="id" value="${data.client.id}" />
-
+        
+        <div if(data.client.id)>
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" id="id" name="id" value="${data.client.id}" />
+        </div>
         <div>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Insert name hear" value="${data.livro.name}" />
+            <input type="text" id="name" name="name" placeholder="Insert name hear" value="${data.client.name}" />
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="exemple@exemple.com" value="${data.livro.email}"/>
+            <input type="email" id="email" name="email" placeholder="exemple@exemple.com" value="${data.client.email}"/>
         </div>
         <div>
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" placeholder="Insert age hear" value="${data.livro.age}">
+            <input type="number" id="age" name="age" placeholder="Insert age hear" value="${data.client.age}">
         </div>
 
         <input type="submit" value="Salvar" />
