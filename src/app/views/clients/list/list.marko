@@ -18,16 +18,16 @@
       <td>Editar</td>
       <td>Excluir</td>
     </tr>
-    <tr for (client in data.clients)>
+    <tr id="client_${client.id}" for (client in data.clients)>
       <td>${client.id}</td>
       <td>${client.name}</td>
       <td>${client.age}</td>
       <td>${client.email}</td>
-      <td><a href="#"><button>Editar</button></a></td>
-      <td><a href="#" data-ref="${client.id}" data-type="delete"><button>Excluir</button></a></td>
+      <td><a href="/clients/register/${client.id}"><button>Editar</button></a></td>
+      <td><a href="#" data-ref="${client.id}" data-type="delete"><button data-ref="${client.id}" data-type="delete">Excluir</button></a></td>
     </tr>
   </table>
 
-  <script src="./delete-client.js"></script>
+  <script src="./static/js/delete-client.js"></script>
 </body>
 </html>

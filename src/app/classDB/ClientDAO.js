@@ -60,6 +60,25 @@ class ClientDAO{
     })
   }
 
+  findId( id ) {
+    return new Promise((resolve, reject) => {
+        this._db.get(
+            `
+                SELECT *
+                FROM clients
+                WHERE id = ?
+            `,
+            [id],
+            (err, client) => {
+                if (err) {
+                    return reject('Não foi possível encontrar o ID!')
+                }
+                return resolve(client)
+            }
+        )
+    })
+  }
+
   update(client) {
     return new Promise((resolve, reject) => {
         this._db.run(`

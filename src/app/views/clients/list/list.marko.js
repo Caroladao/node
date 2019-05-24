@@ -29,7 +29,9 @@ function render(input, out, __component, component, state) {
   marko_forEach(data.clients, function(client) {
     var keyscope__17 = "[" + ((for__16++) + "]");
 
-    out.w("<tr><td>" +
+    out.w("<tr id=\"client_" +
+      marko_escapeXmlAttr(client.id) +
+      "\"><td>" +
       marko_escapeXml(client.id) +
       "</td><td>" +
       marko_escapeXml(client.name) +
@@ -37,12 +39,16 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(client.age) +
       "</td><td>" +
       marko_escapeXml(client.email) +
-      "</td><td><a href=\"#\"><button>Editar</button></a></td><td><a href=\"#\" data-ref=\"" +
+      "</td><td><a href=\"/clients/register/" +
       marko_escapeXmlAttr(client.id) +
-      "\" data-type=\"delete\"><button>Excluir</button></a></td></tr>");
+      "\"><button>Editar</button></a></td><td><a href=\"#\" data-ref=\"" +
+      marko_escapeXmlAttr(client.id) +
+      "\" data-type=\"delete\"><button data-ref=\"" +
+      marko_escapeXmlAttr(client.id) +
+      "\" data-type=\"delete\">Excluir</button></a></td></tr>");
   });
 
-  out.w("</table><script src=\"./delete-client.js\"></script>");
+  out.w("</table><script src=\"./static/js/delete-client.js\"></script>");
 
   init_components_tag({}, out);
 

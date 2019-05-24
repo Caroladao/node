@@ -20,12 +20,7 @@ module.exports = (app) => {
     .catch(err => console.log(err))
   })
 
-  app.get( '/clients/register', (req, res) => {
-    res.marko(require( "../views/clients/register/register.marko" ))
-  })
-
   app.post( '/clients', (req, res) => {
-    console.log(req.body)
     const clientDAO = new ClientDAO( db )
     clientDAO.add(req.body)
     .then(res.redirect('/clients'))
@@ -33,11 +28,28 @@ module.exports = (app) => {
   })
 
   app.delete('/clients/:id', function(req, res) {
-    const id = req.params.id;
-
-    const clientDao = new ClientDao(db);
-    clientDao.delete(id)
+    const id = req.params.id
+    const clientDAO = new ClientDAO( db ) 
+    clientDAO.delete( id )
       .then(() => res.status(200).end())
-      .catch(err => console.log(err));
-});
+      .catch(err => console.log(err))
+  })
+
+  app.get('/clients/register/:id', function(req, res) {
+    const id = req.params.id
+    const clientDAO = new ClientDAO( db )
+    console.log(id)
+    clientDAO.findId( id )
+      .then(client => 
+          res.marko(
+              require('../views/clients/register/register.marko'),
+              { client: client }
+          )
+      )
+      .catch(err => console.log(err))
+  })
+
+  app.get('/clients/register', function(req, resp) {
+    resp.marko(require('../views/register/register.marko'), { client: {} });
+  })
 }
