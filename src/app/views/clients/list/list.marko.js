@@ -11,6 +11,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
     marko_forEach = marko_helpers.f,
     marko_escapeXml = marko_helpers.x,
+    marko_escapeXmlAttr = marko_helpers.xa,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
 
@@ -21,12 +22,12 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Clients</h1><table><tr><td>ID</td><td>Nome</td><td>Idade</td><td>Email</td></tr>");
+  out.w("<h1>Clients</h1><table id=\"clients\"><tr><td>ID</td><td>Nome</td><td>Idade</td><td>Email</td><td>Editar</td><td>Excluir</td></tr>");
 
-  var for__14 = 0;
+  var for__16 = 0;
 
   marko_forEach(data.clients, function(client) {
-    var keyscope__15 = "[" + ((for__14++) + "]");
+    var keyscope__17 = "[" + ((for__16++) + "]");
 
     out.w("<tr><td>" +
       marko_escapeXml(client.id) +
@@ -36,14 +37,16 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(client.age) +
       "</td><td>" +
       marko_escapeXml(client.email) +
-      "</td></tr>");
+      "</td><td><a href=\"#\"><button>Editar</button></a></td><td><a href=\"#\" data-ref=\"" +
+      marko_escapeXmlAttr(client.id) +
+      "\" data-type=\"delete\"><button>Excluir</button></a></td></tr>");
   });
 
-  out.w("</table>");
+  out.w("</table><script src=\"./delete-client.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "21");
+  await_reorderer_tag({}, out, __component, "30");
 
   out.w("</body></html>");
 }

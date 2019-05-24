@@ -19,7 +19,7 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Register Clients</h1><form action=\"/clients\" method=\"post\"><input type=\"hidden\" id=\"id\" name=\"id\"><div><label for=\"name\">Name:</label><input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Insert name hear\"></div><div><label for=\"email\">Preço:</label><input type=\"email\" id=\"email\" name=\"email\" placeholder=\"exemple@exemple.com\"></div><div><label for=\"age\">Descrição:</label><input type=\"number\" id=\"age\" name=\"age\" placeholder=\"Insert age hear\"></div><input type=\"submit\" value=\"Salvar\"></form>");
+  out.w("<h1>Register Clients</h1><form action=\"/clients\" method=\"post\"><input type=\"hidden\" id=\"id\" name=\"id\"><div><label for=\"name\">Name:</label><input type=\"text\" id=\"name\" name=\"name\" placeholder=\"Insert name hear\"></div><div><label for=\"email\">Email:</label><input type=\"email\" id=\"email\" name=\"email\" placeholder=\"exemple@exemple.com\"></div><div><label for=\"age\">Age:</label><input type=\"number\" id=\"age\" name=\"age\" placeholder=\"Insert age hear\"></div><input type=\"submit\" value=\"Salvar\"></form>");
 
   init_components_tag({}, out);
 

@@ -26,5 +26,18 @@ module.exports = (app) => {
 
   app.post( '/clients', (req, res) => {
     console.log(req.body)
+    const clientDAO = new ClientDAO( db )
+    clientDAO.add(req.body)
+    .then(res.redirect('/clients'))
+    .catch(err => console.log(err))
   })
+
+  app.delete('/clients/:id', function(req, res) {
+    const id = req.params.id;
+
+    const clientDao = new ClientDao(db);
+    clientDao.delete(id)
+      .then(() => res.status(200).end())
+      .catch(err => console.log(err));
+});
 }
